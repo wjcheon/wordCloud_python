@@ -1,4 +1,5 @@
 ##
+# conda env: naver_kin_crawling
 import numpy as np
 import random
 import re
@@ -17,7 +18,8 @@ def getFrequencyDictForText(sentence):
 
     # making dict for counting frequencies
     for text in sentence.split(" "):
-        if re.match("a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", text):
+        #if re.match("a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", text):
+        if re.match("과연|설마|제발|정말|결코|모름지기|응당|어찌|아마|정녕|아무쪼록|하물며|그리고|그러나|그러므로|즉|곧|및|혹은|또는", text):
             continue
         val = tmpDict.get(text, 0)
         tmpDict[text.lower()] = val + 1
@@ -29,7 +31,7 @@ def getFrequencyDictForText(sentence):
 def makeImage(text):
 
     font_path = r"D2CodingBold-Ver1.3.2-20180524-ligature.ttf"
-    mask_path = r"diabetes.jpg"
+    mask_path = r"단어모음 (jpg)/단어 (png)/커피.jpeg"
     mask = np.array(Image.open(mask_path))  # powerpoint -> export as jpg format
 
     wc = WordCloud(font_path=font_path, background_color="white", max_words=1000, mask=mask)
@@ -44,7 +46,7 @@ def makeImage(text):
 
 # TEXT
 #f = open(r"poem_YDJ.txt",  'rt', encoding='UTF8')
-f = open(r"diabetes.txt",  'rt', encoding='UTF8')
+f = open(r"질문txt/커피.txt",  'rt', encoding='UTF8')
 text = f.read()
 print(text)
 f.close()
